@@ -1,4 +1,9 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-@import 'welcome'
+@import 'welcome';
+
+.display-email{
+  margin-top: 11px;
+  margin-right: -10px;
+}
