@@ -22,7 +22,7 @@ class WikisController < ApplicationController
 
     if @wiki.save
       flash[:notice] = "Your wiki was saved"
-      redirect_to wikis_path
+      redirect_to @wiki
     else
       flash[:alert] = "There was a problem"
       render :new
