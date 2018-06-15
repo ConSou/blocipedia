@@ -1,0 +1,11 @@
+<h1>Wikis <%=link_to "Create Wiki", new_wiki_path, class: "btn btn-default pull-right" %></h1>
+<div>
+<% @wikis.each do |wiki| %>
+<h4>
+  <%= link_to wiki.title, wiki %>
+</h4>
+<small>
+  Submitted by: <%= wiki.user.email %>
+</small>
+<% end %>
+</div>
