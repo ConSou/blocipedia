@@ -40,6 +40,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'figaro', '1.0'
 
+gem "pundit"
+
 group :production do
    # Use pg as the production database for Active Record
    gem 'pg'
