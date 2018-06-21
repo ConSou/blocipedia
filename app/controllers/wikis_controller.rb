@@ -1,13 +1,15 @@
 class WikisController < ApplicationController
 
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @wikis = Wiki.all
+    authorize @wikis
   end
 
   def show
     @wiki = Wiki.find(params[:id])
+    authorize @wiki
   end
 
   def new
@@ -23,30 +25,31 @@ class WikisController < ApplicationController
       flash[:notice] = "Your wiki was saved"
       redirect_to @wiki
     else
-      flash[:alert] = "There was a problem"
       render :new
     end
   end
 
   def update
     @wiki = Wiki.find(params[:id])
+    authorize @wiki
     @wiki.assign_attributes(wiki_params)
 
     if @wiki.save
       flash[:notice] = "Your wiki has been updated"
       redirect_to @wiki
     else
-      flash[:alert] = "There was a problem"
       render :edit
     end
   end
 
   def edit
     @wiki = Wiki.find(params[:id])
+    authorize @wiki
   end
 
   def destroy
     @wiki = Wiki.find(params[:id])
+    authorize @wiki
 
     if @wiki.destroy
       flash[:notice] = "Your wiki was removed successfully"

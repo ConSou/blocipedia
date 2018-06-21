@@ -1,4 +1,8 @@
-<h1>Wikis <%=link_to "Create Wiki", new_wiki_path, class: "btn btn-default pull-right" %></h1>
+
+<% if policy(:wiki).create? %>
+  <h1>Wikis <%=link_to "Create Wiki", new_wiki_path, class: "btn btn-default pull-right" %></h1>
+<% end %>
+
 <div>
 <% @wikis.each do |wiki| %>
 <h4>
