@@ -40,8 +40,6 @@
 <% if current_user.premium? %>
   <h4> Downgrade to Standard? </h4>
   <p> You will no longer be able to create private wikis :( </p>
-  <%= button_to "Downgrade", {action: "downgrade_user", id: current_user.id }, method: :put, class: 'btn btn-danger' %>
-
 
 <% else %>
   <h4> Upgrade to Premium? </h4>

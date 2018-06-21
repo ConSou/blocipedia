@@ -31,4 +31,5 @@ class ChargesController < ApplicationController
       amount: 1000
     }
   end
+
 end
