@@ -32,4 +32,9 @@ class ChargesController < ApplicationController
     }
   end
 
+  def downgrade_user
+    current_user.standard!
+  end
+
+
 end
