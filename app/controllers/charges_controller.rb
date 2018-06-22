@@ -9,7 +9,7 @@ class ChargesController < ApplicationController
 
    charge = Stripe::Charge.create(
      customer: customer.id,
-     amount: 1000,
+     amount: Amount.default,
      description: "Premium Membership - #{current_user.email}",
      currency: 'usd'
    )
@@ -28,13 +28,22 @@ class ChargesController < ApplicationController
     @stripe_btn_data = {
       key: "#{ Rails.configuration.stripe[:publishable_key] }",
       description: "Premium Membership - #{current_user.email}",
-      amount: 1000
+      amount: Amount.default
     }
   end
 
   def downgrade_user
     current_user.standard!
+    flash[:notice] = "Your account has been downgraded to standard"
+    redirect_to wikis_path
   end
 
+end
+
+class Amount
+
+  def self.default
+    1000
+  end
 
 end
