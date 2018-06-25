@@ -21,6 +21,14 @@
  <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter Markdown here" %>
 <% end %>
 
+<% if current_user.admin? || current_user.premium? %>
+  <div class="form-group">
+    <%= f.label :private, class: 'checkbox' do %>
+    <%= f.check_box :private %> Private wiki
+    <% end %>
+  </div>
+<% end %>
+
  <%= f.submit "Save", class: "btn btn-default" %>
 
  <% end %>

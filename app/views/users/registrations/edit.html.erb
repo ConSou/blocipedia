@@ -40,7 +40,7 @@
 <% if current_user.premium? %>
   <h4> Downgrade to Standard? </h4>
   <p> You will no longer be able to create private wikis :( </p>
-  <%= button_to 'Downgrade', users_downgrade_user_path, method: :post, class: 'btn btn-danger' %>
+  <%= button_to 'Downgrade', users_downgrade_user_path, method: :post, class: 'btn btn-danger', data: {confirm: "Are you sure you want to downgrade account?  All private wikis will become public."} %>
 <% else %>
   <h4> Upgrade to Premium? </h4>
   <p> You can upgrade your account to premium for the low cost of $10 </p>

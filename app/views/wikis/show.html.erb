@@ -3,6 +3,7 @@
 <div class="jumbotron">
 <%= @wiki.body %>
 </div>
+
 <% if current_user == @wiki.user %>
   <%= link_to "Delete Wiki", @wiki, method: :delete, class: "btn btn-danger pull-right", data: {confirm: "Are you sure you want to delete wiki?"} %>
 <% end %>
