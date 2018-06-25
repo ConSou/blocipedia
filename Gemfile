@@ -46,6 +46,8 @@ gem 'faker'
 
 gem 'stripe'
 
+gem 'redcarpet'
+
 
 group :production do
    # Use pg as the production database for Active Record

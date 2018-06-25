@@ -1,7 +1,7 @@
 <h1 class="page-header"><%= @wiki.title %></h1>
 
 <div class="jumbotron">
-<%= @wiki.body %>
+<%= markdown(@wiki.body) %>
 </div>
 
 <% if current_user == @wiki.user %>
