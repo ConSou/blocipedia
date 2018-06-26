@@ -4,6 +4,17 @@
 <%= markdown(@wiki.body) %>
 </div>
 
+<% if @wiki.private? && current_user = @wiki.user %>
+<div>
+<h4> Collaborators </h4>
+<% @wiki.collaborators.each do |collab| %>
+<ul>
+  <li><%= collab.user.email %></li>
+</ul>
+<% end %>
+</div>
+<% end %>
+
 <% if current_user == @wiki.user %>
   <%= link_to "Delete Wiki", @wiki, method: :delete, class: "btn btn-danger pull-right", data: {confirm: "Are you sure you want to delete wiki?"} %>
 <% end %>
