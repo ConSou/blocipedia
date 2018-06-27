@@ -33,9 +33,6 @@ class WikisController < ApplicationController
     @wiki = Wiki.find(params[:id])
     authorize @wiki
 
-    p "test"
-    p wiki_params
-    p wiki_params[:user]
     user = User.find(collab_params[:user])
     @wiki.collaborators.create(user: user)
 

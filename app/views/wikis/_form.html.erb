@@ -30,7 +30,10 @@
 <% end %>
 
 <% if current_user.premium? && @wiki.private? %>
+<div>
+  <p> Add collaborators </p>
   <%= f.collection_select :user, User.order(:email),:id, :email, include_blank: true %>
+</div>
 <% end %>
 
 <div>
