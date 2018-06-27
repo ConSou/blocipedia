@@ -30,8 +30,9 @@
 <% end %>
 
 <% if current_user.premium? && @wiki.private? %>
-  <%= f.collection_select :user, User.order(:email),:id,:email, include_blank: true %>
+  <%= f.collection_select :user, User.order(:email),:id, :email, include_blank: true %>
 <% end %>
+
 <div>
  <%= f.submit "Save", class: "btn btn-default" %>
 </div>

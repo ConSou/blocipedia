@@ -32,6 +32,13 @@ class WikisController < ApplicationController
   def update
     @wiki = Wiki.find(params[:id])
     authorize @wiki
+
+    p "test"
+    p wiki_params
+    p params[:user]
+    user = User.find(params[:user])
+    @wiki.collaborators.create(user: user)
+
     @wiki.assign_attributes(wiki_params)
 
     if @wiki.save
@@ -67,7 +74,7 @@ class WikisController < ApplicationController
   private
 
   def wiki_params
-    params.require(:wiki).permit(:title, :body, :private)
+    params.require(:wiki).permit(:title, :body, :private, :user)
   end
 
 end
