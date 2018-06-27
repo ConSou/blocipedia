@@ -35,8 +35,8 @@ class WikisController < ApplicationController
 
     p "test"
     p wiki_params
-    p params[:user]
-    user = User.find(params[:user])
+    p wiki_params[:user]
+    user = User.find(collab_params[:user])
     @wiki.collaborators.create(user: user)
 
     @wiki.assign_attributes(wiki_params)
@@ -74,7 +74,11 @@ class WikisController < ApplicationController
   private
 
   def wiki_params
-    params.require(:wiki).permit(:title, :body, :private, :user)
+    params.require(:wiki).permit(:title, :body, :private)
+  end
+
+  def collab_params
+    params.require(:wiki).permit(:user)
   end
 
 end
