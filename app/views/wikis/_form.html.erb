@@ -40,7 +40,7 @@
  <%= form_for [@wiki, Collaborator.new] do |f| %>
  <div>
    <h4> Add collaborators </h4>
-   <%= f.collection_select :user, User.order(:email),:id, :email, {}, {:multiple => true} %>
+   <%= f.collection_select :user, @available_users.order(:email),:id, :email, {}, {:multiple => true} %>
  </div>
  <%= f.submit "Add", class: "btn btn-default" %>
    <h4> Collaborators </h4>

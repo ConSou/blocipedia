@@ -4,7 +4,6 @@ class CollaboratorsController < ApplicationController
 
   @wiki = Wiki.find(params[:wiki_id])
   authorize @wiki
-  @wiki.private = true
 
   params[:collaborator][:user].reject!{ |c| c.empty? }.each do |user|
     userAdd = User.find(user)
@@ -26,9 +25,3 @@ class CollaboratorsController < ApplicationController
 
 
 end
-
-# if @wiki.collaborators.where(user: userAdd)
-#   flash[:notice] = "#{userAdd.email} is already collaborator"
-# else
-# @wiki.collaborators.create(user: userAdd)
-# end

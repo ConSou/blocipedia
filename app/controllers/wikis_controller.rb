@@ -3,8 +3,8 @@ class WikisController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @wikis = Wiki.all
-    authorize @wikis
+     @wikis = policy_scope(Wiki)
+
   end
 
   def show
@@ -45,7 +45,7 @@ class WikisController < ApplicationController
 
   def edit
     @wiki = Wiki.find(params[:id])
-    # @available_users = User.where.not(id: collab_ids)
+    @available_users = User.where.not(id: collab_ids.each {|e| e})
     authorize @wiki
   end
 
@@ -72,8 +72,13 @@ class WikisController < ApplicationController
     params.require(:wiki).permit(:title, :body, :private)
   end
 
-  def collab_params
-    params.require(:wiki).permit(:user)
+  def collab_ids
+    arr = []
+    @wiki.collaborators.each do |collab|
+       arr.push(collab.user_id)
+    end
+    arr.push(current_user.id)
+    return arr
   end
 
 end

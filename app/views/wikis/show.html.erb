@@ -4,7 +4,6 @@
 <%= markdown(@wiki.body) %>
 </div>
 
-<%= @wiki.private? %>
 
 <div>
 <% if current_user == @wiki.user %>
