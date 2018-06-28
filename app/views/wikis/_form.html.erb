@@ -29,14 +29,28 @@
   </div>
 <% end %>
 
-<% if current_user.premium? && @wiki.private? %>
-<div>
-  <p> Add collaborators </p>
-  <%= f.collection_select :user, User.order(:email),:id, :email, include_blank: true %>
-</div>
-<% end %>
-
 <div>
  <%= f.submit "Save", class: "btn btn-default" %>
 </div>
+ <% end %>
+
+
+ <% if current_user.premium? && @wiki.private? %>
+ <div class="collab-menu pull-right">
+ <%= form_for [@wiki, Collaborator.new] do |f| %>
+ <div>
+   <h4> Add collaborators </h4>
+   <%= f.collection_select :user, User.order(:email),:id, :email, {}, {:multiple => true} %>
+ </div>
+ <%= f.submit "Add", class: "btn btn-default" %>
+   <h4> Collaborators </h4>
+   <% @wiki.collaborators.each do |collab| %>
+   <h5>
+     <%= link_to "X", wiki_collaborator_path(@wiki, collab.user.id), method: :delete, class: "btn btn-danger" %>
+     <%= collab.user.email %>
+   </h5>
+   <% end %>
+ </div>
+
+ <% end %>
  <% end %>

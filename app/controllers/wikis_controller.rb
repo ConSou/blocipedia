@@ -33,9 +33,6 @@ class WikisController < ApplicationController
     @wiki = Wiki.find(params[:id])
     authorize @wiki
 
-    user = User.find(collab_params[:user])
-    @wiki.collaborators.create(user: user)
-
     @wiki.assign_attributes(wiki_params)
 
     if @wiki.save
@@ -48,6 +45,7 @@ class WikisController < ApplicationController
 
   def edit
     @wiki = Wiki.find(params[:id])
+    # @available_users = User.where.not(id: collab_ids)
     authorize @wiki
   end
 

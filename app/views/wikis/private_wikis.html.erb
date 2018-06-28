@@ -1,10 +1,10 @@
 <% if policy(:wiki).create? %>
-  <h1> Private tWikis <%=link_to "Create Wiki", new_wiki_path, class: "btn btn-default pull-right" %></h1>
+  <h1> Private Wikis <%=link_to "Create Wiki", new_wiki_path, class: "btn btn-default pull-right" %></h1>
 <% end %>
 
 <div>
 <% @wikis.each do |wiki| %>
-<% if wiki.private == true && current_user.email == wiki.user.email %>
+<% if wiki.private == true && current_user == wiki.user %>
 <h4>
   <%= link_to wiki.title, wiki %>
 </h4>
