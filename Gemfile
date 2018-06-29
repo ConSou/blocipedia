@@ -50,6 +50,8 @@ gem 'redcarpet'
 
 gem 'friendly_id', '~> 5.1.0'
 
+gem 'haml'
+
 
 group :production do
    # Use pg as the production database for Active Record

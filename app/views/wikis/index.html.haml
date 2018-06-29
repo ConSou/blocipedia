@@ -1,0 +1,23 @@
+- if policy(:wiki).create?
+  %h1
+    Wikis
+    =link_to "Create Wiki", new_wiki_path, :class => "btn btn-default pull-right"
+
+%div
+  - @wikis.each do |wiki|
+    - if wiki.private == false
+      %h4
+        =link_to wiki.title, wiki
+      %small
+        Submitted by:
+        =wiki.user.email
+
+- if current_user && current_user.wikis.count > 0
+  %div
+    %h2 Your Collab Wikis
+    - current_user.wikis.each do |pwiki|
+      %h4
+        =link_to pwiki.title, pwiki
+      %small
+        Submitted by:
+        =pwiki.user.email
