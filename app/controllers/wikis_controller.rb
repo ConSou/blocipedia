@@ -8,8 +8,11 @@ class WikisController < ApplicationController
   end
 
   def show
-    @wiki = Wiki.find(params[:id])
+    @wiki = Wiki.friendly.find(params[:id])
     authorize @wiki
+    if request.path != wiki_path(@wiki)
+      redirect_to @wiki, status: :moved_permanently
+    end
   end
 
   def new
@@ -30,7 +33,7 @@ class WikisController < ApplicationController
   end
 
   def update
-    @wiki = Wiki.find(params[:id])
+    @wiki = Wiki.friendly.find(params[:id])
     authorize @wiki
 
     @wiki.assign_attributes(wiki_params)
@@ -44,13 +47,13 @@ class WikisController < ApplicationController
   end
 
   def edit
-    @wiki = Wiki.find(params[:id])
+    @wiki = Wiki.friendly.find(params[:id])
     @available_users = User.where.not(id: collab_ids.each {|e| e})
     authorize @wiki
   end
 
   def destroy
-    @wiki = Wiki.find(params[:id])
+    @wiki = Wiki.friendly.find(params[:id])
     authorize @wiki
 
     if @wiki.destroy

@@ -48,6 +48,8 @@ gem 'stripe'
 
 gem 'redcarpet'
 
+gem 'friendly_id', '~> 5.1.0'
+
 
 group :production do
    # Use pg as the production database for Active Record
