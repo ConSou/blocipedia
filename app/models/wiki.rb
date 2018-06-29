@@ -10,7 +10,7 @@ class Wiki < ApplicationRecord
   after_initialize :set_private
 
   def set_private
-    self.private ||= false
+      self.private ||= false
   end
 
 end

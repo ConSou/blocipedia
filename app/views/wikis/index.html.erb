@@ -15,3 +15,17 @@
 <% end %>
 <% end %>
 </div>
+
+<% if current_user && current_user.wikis.count > 0%>
+<div>
+  <h2> Your Collab Wikis </h2>
+  <% current_user.wikis.each do |pwiki| %>
+  <h4>
+    <%= link_to pwiki.title, pwiki %>
+  </h4>
+  <small>
+    Submitted by: <%= pwiki.user.email %>
+  </small>
+  <% end %>
+</div>
+<% end %>
