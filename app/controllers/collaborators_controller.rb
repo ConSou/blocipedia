@@ -2,7 +2,7 @@ class CollaboratorsController < ApplicationController
 
   def create
 
-  @wiki = Wiki.find(params[:wiki_id])
+  @wiki = Wiki.friendly.find(params[:wiki_id])
   authorize @wiki
 
   params[:collaborator][:user].reject!{ |c| c.empty? }.each do |user|
@@ -15,7 +15,7 @@ class CollaboratorsController < ApplicationController
   end
 
   def destroy
-      @wiki = Wiki.find(params[:wiki_id])
+      @wiki = Wiki.friendly.find(params[:wiki_id])
       user = User.find(params[:id])
       @wiki.collaborators.where(user: user).destroy_all
 
